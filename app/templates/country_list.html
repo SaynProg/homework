@@ -2,10 +2,28 @@
 
 {% block content %}
 
-<ol>
+<ul>
 	{% for i in items %}
-		<li><a href='{% url "country" i.id %}'>{{i}}</a></li>
+		<li style="margin-bottom: 10px;"><a href='{% url "country" i.id %}'>{{i}}</a></li>
 	{% endfor %}
-</ol>
+</ul>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if items.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ items.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            {{ items.number }} of {{ items.paginator.num_pages }}.
+        </span>
+
+        {% if items.has_next %}
+            <a href="?page={{ items.next_page_number }}">next</a>
+            <a href="?page={{ items.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 
 {% endblock %}

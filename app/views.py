@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from .models import *
+from django.core.paginator import Paginator
 
 def HomePage(request):
 	return render(request, 'home.html')
 
 def CountriesListPage(request):
 	items = Country.objects.all()
-	return render(request, 'country_list.html', {'items':items})
+	paginator = Paginator(items, 10)
+	page_number = request.GET.get("page")
+	page_obj = paginator.get_page(page_number)
+	return render(request, 'country_list.html', {'items':page_obj})
 
 def CountryPage(request, pk):
 	item = Country.objects.get(id = pk)
