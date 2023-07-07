@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<ol>
+	{% for i in items %}
+		<li><a href='{% url "country" i.id %}'>{{i}}</a></li>
+	{% endfor %}
+</ol>
+
+{% endblock %}

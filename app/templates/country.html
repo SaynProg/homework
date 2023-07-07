@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>{{item}}</h2>
+
+<ul>
+	{% for i in langs %}
+	<li>{{i}}</li>
+	{% endfor %}
+</ul>
+
+{% endblock %}
